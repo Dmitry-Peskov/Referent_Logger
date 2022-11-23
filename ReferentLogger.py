@@ -8,7 +8,7 @@ LOGFILE_PATH = [fr'\log\Referent\Referent.log', fr'\CPCrypto.ini', fr'\Referent0
                 fr'\Referent_Setup.ini', fr'\log\Referent\Reftransport.log', fr'\log\FormatCheck\FormatCheck.log',
                 fr'\DocEngineError.log', fr'\dbconnection.ini', fr'\log\ManagedApp\WebModuleSystem.log']
 
-def create_base_folder(input_login: str):
+def create_base_folder(input_login: str) -> None:
     '''Создать базовую папку для сбора log файлов'''
     folder = fr'{input_login} - log файлы'
     if not os.path.exists(folder):
@@ -28,7 +28,7 @@ def create_path_to_file(base_dir: str, input_login: str, logfile_path: list) -> 
     lp.append(fr'{base_dir}\log\Referent\protocol_{input_login}.log')
     return lp
 
-def copy_logfile(logfile_path: list, base_folder: str):
+def copy_logfile(logfile_path: list, base_folder: str) -> None:
     '''Если файл существует -> копируем в директорию для сбора log файлов'''
     need_copy = len(logfile_path)
     copy = int()
@@ -45,7 +45,7 @@ def copy_logfile(logfile_path: list, base_folder: str):
             print(f'"{log_name}" НЕ СУЩЕСТВУЕТ в "{log_path}"')
     print(f'\n-----Копирование завершено-----\nСкопировано {copy} из {need_copy} log файлов\n{"-"*31}\n')
 
-def create_zip(base_folder: str):
+def create_zip(base_folder: str) -> None:
     '''Создать zip архив и упаковать папку с log-ами в него'''
     archive = zipfile.ZipFile(f'{base_folder}.zip', mode='w')
     cnt_zip = int()
@@ -60,7 +60,7 @@ def create_zip(base_folder: str):
     archive.close()
     print(f'\n-----Упаковка завершена-----\nУпакован(но) {cnt_zip} файл(ов)\n{"-"*28}\n')
 
-def delete_folder(base_dir: str, base_folder: str):
+def delete_folder(base_dir: str, base_folder: str) -> None:
     '''Удаляет папку с собранными log файлами'''
     delete_folder = os.path.join(base_dir,base_folder)
     try:
