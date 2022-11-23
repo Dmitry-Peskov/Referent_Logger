@@ -71,7 +71,7 @@ def delete_folder(base_dir: str, base_folder: str) -> None:
 
 def main():
     '''Логика работы приложения'''
-    login = str(input('Введите логин (системный ящик без домена): '))
+    login = str(input('Введите логин (системный ящик без домена): ').replace(' ',''))
     create_base_folder(login) # создаём папку для сбора log файлов
     log_pat = create_path_to_file(BASE_DIR, login, LOGFILE_PATH) # генерируем пути к log файлам
     copy_logfile(log_pat, BASE_FOLDER) # копируем log в папку для сбора
